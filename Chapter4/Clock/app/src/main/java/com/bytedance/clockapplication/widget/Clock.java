@@ -80,12 +80,7 @@ public class Clock extends View {
         int widthWithoutPadding = width - getPaddingLeft() - getPaddingRight();
         int heightWithoutPadding = height - getPaddingTop() - getPaddingBottom();
 
-        if (widthWithoutPadding > heightWithoutPadding) {
-            size = heightWithoutPadding;
-        } else {
-            size = widthWithoutPadding;
-        }
-
+        size = Math.min(widthWithoutPadding, heightWithoutPadding);
         setMeasuredDimension(size + getPaddingLeft() + getPaddingRight(), size + getPaddingTop() + getPaddingBottom());
     }
 
@@ -109,7 +104,7 @@ public class Clock extends View {
     protected void onDraw(final Canvas canvas) {
         super.onDraw(canvas);
 
-        mWidth = getHeight() > getWidth() ? getWidth() : getHeight();
+        mWidth = Math.min(getWidth(), getHeight());
 
         int halfWidth = mWidth / 2;
         mCenterX = halfWidth;
